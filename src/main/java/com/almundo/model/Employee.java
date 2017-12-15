@@ -1,5 +1,9 @@
 package com.almundo.model;
 
+/**
+ * @author Teresa Celina di Tada
+ *
+ */
 public class Employee implements Comparable<Employee>{
 	
 	private String name;
@@ -23,17 +27,31 @@ public class Employee implements Comparable<Employee>{
 		return rank;
 	}
 	
+	/**
+	 * Finish a call
+	 */
 	public void endCall() {
-		this.free = true;
+		this.setFree(true);
 		center.callEnd(this);
 	}
 	
+	/**
+	 * Stars a call
+	 */
 	public void enterCall() {
-		this.free = false;
+		this.setFree(false);
 	}
 	
 	public int compareTo(Employee e) {
 		return rank.compareTo(e.getRank());
+	}
+
+	private boolean isFree() {
+		return free;
+	}
+
+	private void setFree(boolean free) {
+		this.free = free;
 	}
 	
 }

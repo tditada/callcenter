@@ -1,20 +1,14 @@
 package com.almundo.app;
-
-import java.util.concurrent.ExecutionException;
-
 import com.almundo.model.Callcenter;
+import com.almundo.model.EmptyCenterException;
 
 public class App 
 {
-    public static void main(String[] args) throws InterruptedException
+    public static void main(String[] args) throws InterruptedException, EmptyCenterException
     {
     	Callcenter c = new Callcenter(1, 1, 1);
-    	try {
-    		for (int i = 0; i < 10; i++) {
-    			c.manageCall();
-    		}
-		} catch (ExecutionException e) {
-			e.printStackTrace();
+		for (int i = 0; i < 10; i++) {
+			c.manageCall();
 		}
     	
     }

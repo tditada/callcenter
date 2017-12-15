@@ -1,7 +1,9 @@
 package com.almundo.model;
 
-import java.util.concurrent.ExecutionException;
-
+/**
+ * @author Teresa Celina di Tada
+ *
+ */
 public class Callcenter {
 	
 	private Dispatcher dispatcher;
@@ -29,16 +31,34 @@ public class Callcenter {
 		return directors;
 	}
 	
-	public int manageCall() throws InterruptedException, ExecutionException {
-		Call c = new Call(new Client("Client N" + calls));
-		dispatcher.dispatchCall(c);
-		return this.calls++;
+	public void addOperators(Integer toAdd) {
+		dispatcher.addOperators(toAdd, this);
+		this.operators += toAdd;
 	}
 	
+	/** Sends the incoming call to the dispatcher 
+	 * 
+	 * @see com.almundo.model.Dispatcher
+	 * @return total numbers of call managed
+	 * @throws InterruptedException - Call was interrupted
+	 * @throws EmptyCenterException 
+	 */
+	public void manageCall() throws InterruptedException, EmptyCenterException {
+		Call c = new Call(new Client("Client N" + calls));
+		dispatcher.dispatchCall(c);
+	}
+	
+	/**
+	 * Ends a call and tells the dispatcher to free an employee
+	 * @param e - Employee that was in a call that recently end
+	 */
 	public void callEnd(Employee e) {
 		dispatcher.freeEmployee(e);
 	}
 	
+	/**
+	 * Close the shift for the day
+	 */
 	public void endShift() {
 		this.dispatcher.endShift();
 	}

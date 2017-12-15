@@ -1,5 +1,9 @@
 package com.almundo.model;
 
+/**
+ * @author Teresa Celina di Tada
+ *
+ */
 public class Client {
 	
 	private String name;

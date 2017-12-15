@@ -43,7 +43,7 @@ public class Dispatcher {
 	 * @throws InterruptedException 
 	 * @throws EmptyCenterException 
 	 */
-	public void dispatchCall(Call call) throws EmptyCenterException, InterruptedException {
+	public Call dispatchCall(Call call) throws EmptyCenterException, InterruptedException {
 		Employee e = employees.poll();
 		Integer time = 0;
 		while (e == null && time <= MAX_TIME_SECONDS) {
@@ -57,6 +57,7 @@ public class Dispatcher {
 		}
 		call.assignedEmployee(e);
 		pool.submit(call);
+		return call;
 	}
 	
 	

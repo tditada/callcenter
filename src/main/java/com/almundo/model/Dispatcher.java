@@ -43,7 +43,7 @@ public class Dispatcher {
 	 * @throws InterruptedException 
 	 * @throws EmptyCenterException 
 	 */
-	public Call dispatchCall(Call call) throws EmptyCenterException, InterruptedException {
+	public void dispatchCall(Call call) throws EmptyCenterException, InterruptedException {
 		Employee e = employees.poll();
 		Integer time = 0;
 		while (e == null && time <= MAX_TIME_SECONDS) {
@@ -57,7 +57,6 @@ public class Dispatcher {
 		}
 		call.assignedEmployee(e);
 		pool.submit(call);
-		return call;
 	}
 	
 	
@@ -84,12 +83,12 @@ public class Dispatcher {
 		}
 	}
 	
-	public void addSupervisor(Integer toAdd, Callcenter center) {
+	public void addSupervisors(Integer toAdd, Callcenter center) {
 		for (int i = 0; i < toAdd; i++) {
 			employees.add(new Supervisor("New Supervisor " + i, center));
 		}
 	}
-	public void addDirector(Integer toAdd, Callcenter center) {
+	public void addDirectors(Integer toAdd, Callcenter center) {
 		for (int i = 0; i < toAdd; i++) {
 			employees.add(new Director("New Director " + i, center));
 		}

@@ -61,6 +61,12 @@ public class CallcenterTest  extends TestCase {
 		}
     }
 	
+	/**
+	 * When there is no employee to get assigned to the call,
+	 * the dispatcher plays waiting music for a fixed amount of time
+	 * until someone gets free or the max waiting time is achieved.
+	 * 
+	 */
 	public void tenCallsThreeEmployeesNoException() {
 		Callcenter c = new Callcenter(1, 1, 1);
 		try {
@@ -83,6 +89,11 @@ public class CallcenterTest  extends TestCase {
 		}
     }
 	
+	/**
+	 * When there are more calls than employees
+	 * calls waits for someone to get the call until a fixed 
+	 * max time in seconds is achieved.
+	 */
 	public void testMoreCallsThanEmployeesNoException() {
 		Callcenter c = new Callcenter(2, 1, 1);
 		try {
@@ -95,6 +106,11 @@ public class CallcenterTest  extends TestCase {
 		}
     }
 	
+	/**
+	 * When there is no employee and max time is achieved
+	 * we get an EmtpyCenterException telling us there are
+	 * no employees available
+	 */
 	public void testCallNoEmployee() throws InterruptedException {
 		Callcenter center = new Callcenter(0, 0, 0);
 		try {
